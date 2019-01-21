@@ -50,7 +50,7 @@ public class OrderControllerTest {
 						resourceDetails().description("Get an order"), //
 						preprocessRequest(modifyUris() //
 								.scheme("https") //
-								.host("api.example.com") //
+								.host("demo-restdocs.apps.pcfone.io") //
 								.removePort()), //
 						responseFields( //
 								fieldWithPath("id").description("Id of the order"), //

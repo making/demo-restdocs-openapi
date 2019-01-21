@@ -7,10 +7,16 @@ Toshiaki Maki(@making);
 :toclevels: 4
 :sectlinks:
 
-[[resources]]
-= Resources
+== Specification
 
-== Order
-=== Get an order
+In addition to the documentation on this page, you can also download a spec file describing the API:
+
+* link:openapi-2.0.yml[Download as OpenAPI 2.0 YAML]
+
+[[resources]]
+== Resources
+
+=== Order
+==== Get an order
 
 operation::get-order[]
