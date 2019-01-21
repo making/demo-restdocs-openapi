@@ -1,0 +1,16 @@
+= Order API Guide
+Toshiaki Maki(@making);
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[resources]]
+= Resources
+
+== Order
+=== Get an order
+
+operation::get-order[]
