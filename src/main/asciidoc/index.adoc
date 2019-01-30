@@ -11,7 +11,7 @@ Toshiaki Maki(@making);
 
 In addition to the documentation on this page, you can also download a spec file describing the API:
 
-* link:openapi-2.0.yml[Download as OpenAPI 2.0 YAML]
+* link:openapi-3.0.yml[Download as OpenAPI 3.0 YAML]
 
 [[resources]]
 == Resources
