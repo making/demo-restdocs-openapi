@@ -21,3 +21,7 @@ In addition to the documentation on this page, you can also download a spec file
 ==== Get an order
 
 operation::get-order[]
+
+==== Post an order
+
+operation::post-order[]
