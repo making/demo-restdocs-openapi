@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.restdocs.JUnitRestDocumentation;
@@ -34,6 +35,12 @@ public class OrderControllerTest {
 	@LocalServerPort
 	private int port;
 	private RequestSpecification documentationSpec;
+	@Value("${restdoc.scheme:http}")
+	private String restdocScheme;
+	@Value("${restdoc.host:localhost}")
+	private String restdocHost;
+	@Value("${restdoc.port:8080}")
+	private int restdocPort;
 	@Rule
 	public final JUnitRestDocumentation restDocumentation = new JUnitRestDocumentation();
 
@@ -49,9 +56,9 @@ public class OrderControllerTest {
 				.filter(RestAssuredRestDocumentationWrapper.document("get-order",
 						resourceDetails().description("Get an order"), //
 						preprocessRequest(modifyUris() //
-								.scheme("https") //
-								.host("demo-restdocs.apps.pcfone.io") //
-								.removePort()), //
+								.scheme(this.restdocScheme) //
+								.host(this.restdocHost) //
+								.port(this.restdocPort)), //
 						responseFields( //
 								fieldWithPath("id").description("Id of the order"), //
 								fieldWithPath("status")

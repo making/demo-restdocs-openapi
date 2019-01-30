@@ -19,6 +19,9 @@
         <asciidoctor.version>1.5.6</asciidoctor.version>
         <restdocs-api-spec.version>0.8.0</restdocs-api-spec.version>
         <restdocs-spec.version>0.10</restdocs-spec.version>
+        <restdoc.scheme>http</restdoc.scheme>
+        <restdoc.host>localhost</restdoc.host>
+        <restdoc.port>8080</restdoc.port>
     </properties>
 
     <dependencies>
@@ -134,13 +137,14 @@
                         </goals>
                         <configuration>
                             <specification>OPENAPI_V3</specification>
-                            <!--suppress MavenModelInspection -->
-                            <skip>${skipTests}</skip>
-                            <host>demo-restdocs.apps.pcfone.io</host>
+                            <!--<host>${restdoc.host}:${restdoc.port}</host>--><!-- plugin hasn't support configuring port for V3 yet -->
+                            <host>${restdoc.host}</host>
                             <schemes>
-                                <scheme>https</scheme>
+                                <scheme>${restdoc.scheme}</scheme>
                             </schemes>
                             <outputDirectory>${project.build.directory}/classes/static/docs</outputDirectory>
+                            <!--suppress MavenModelInspection -->
+                            <skip>${skipTests}</skip>
                         </configuration>
                     </execution>
                 </executions>
