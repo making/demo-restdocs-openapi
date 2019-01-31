@@ -135,9 +135,8 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <specification>OPENAPI_V3</specification>
-                            <!--<host>${restdoc.host}:${restdoc.port}</host>--><!-- plugin hasn't support configuring port for V3 yet -->
-                            <host>${restdoc.host}</host>
+                            <specification>OPENAPI_V2</specification>
+                            <host>${restdoc.host}:${restdoc.port}</host>
                             <schemes>
                                 <scheme>${restdoc.scheme}</scheme>
                             </schemes>
