@@ -22,6 +22,7 @@
         <restdoc.scheme>http</restdoc.scheme>
         <restdoc.host>localhost</restdoc.host>
         <restdoc.port>8080</restdoc.port>
+        <docs.resources.version>0.1.2.RELEASE</docs.resources.version>
     </properties>
 
     <dependencies>
@@ -38,6 +39,13 @@
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
             <version>0.36</version>
+        </dependency>
+        <dependency>
+            <groupId>io.spring.docresources</groupId>
+            <artifactId>spring-doc-resources</artifactId>
+            <version>${docs.resources.version}</version>
+            <type>zip</type>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,10 +98,19 @@
                             <goal>process-asciidoc</goal>
                         </goals>
                         <configuration>
-                            <!--suppress MavenModelInspection -->
                             <skip>${skipTests}</skip>
-                            <backend>html</backend>
+                            <backend>html5</backend>
+                            <sourceHighlighter>highlight.js</sourceHighlighter>
                             <doctype>book</doctype>
+                            <attributes>
+                                <docinfo>shared</docinfo>
+                                <stylesdir>css/</stylesdir>
+                                <stylesheet>spring.css</stylesheet>
+                                <linkcss>true</linkcss>
+                                <icons>font</icons>
+                                <highlightjsdir>js/highlight</highlightjsdir>
+                                <highlightjs-theme>atom-one-dark-reasonable</highlightjs-theme>
+                            </attributes>
                         </configuration>
                     </execution>
                 </executions>
@@ -104,6 +121,26 @@
                         <version>${spring-restdocs.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-doc-resources</id>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <includeGroupIds>io.spring.docresources</includeGroupIds>
+                            <includeArtifactIds>spring-doc-resources</includeArtifactIds>
+                            <includeTypes>zip</includeTypes>
+                            <excludeTransitive>true</excludeTransitive>
+                            <outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -157,12 +194,20 @@
             <id>jcenter</id>
             <url>https://jcenter.bintray.com</url>
         </repository>
+        <repository>
+            <id>spring-release</id>
+            <url>https://repo.spring.io/release</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-release</id>
+            <url>https://repo.spring.io/release</url>
         </pluginRepository>
     </pluginRepositories>
 </project>
